@@ -1,5 +1,30 @@
 # Project 1 @cmda-minor-web · 2019-2020
 
+## Initial ideas
+
+Search engine for kids' books based on user input:
+
+* Choose a subject
+* Enter your age
+* Show suited books for kid based on the given input
+
+## To Do's:
+
+* Make a color/stylesheet for the application
+
+* Make a from which will take the follwoing user input:
+    * Age
+    * Genre/subject
+    * Surprise button
+
+* Make a fetch request based on the given userinput, this input can be:
+    * Genre/subject
+    * Age
+    * Suprise me (give a random genre or subject to the fetch request) 
+
+* Render the search results
+    * Render a list of suited books
+
 ## Zoek in de de collectie van de OBA
 
 Het project vindt plaats bij de Centrale OBA. Maandagochtend is om 10.30 uur de kickoff (10:15 uur inloop), vrijdag zijn de presentaties van de resultaten. In een week bouwt iedere student een eigen prototype dat bezoekers kan helpen om items uit de OBA collectie te vinden. Technieken geleerd bij [CSS to the Rescue](https://github.com/cmda-minor-web/css-to-the-rescue-1819) en [Web App from Scratch](https://github.com/cmda-minor-web/web-app-from-scratch-1819) worden toegepast bij het bouwen van de de prototypes.
