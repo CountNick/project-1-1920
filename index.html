@@ -9,30 +9,39 @@
   <body>
 
     <header>
-      <h1>Zoek op je lidnummer</h1>
+      <h1>Welkom bij de  OBA</h1>
     </header>
 
     
-    <form id="login" action="">
 
-          
-      <label for="uname"><b>Username</b></label>
-      <input type="number" placeholder="Enter Username" name="uname" required>
-  
-      <!-- <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required> -->
-  
-      <button type="submit">Login</button>
-      <!-- <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label> -->
-    
-
-  </form>
 
     <main>
+      
+      <section class="loginSection">
+      <form id="login" action="">
+        
+        <label for="uname"><b>Username</b></label>
+        <input type="number" placeholder="Enter Username" name="uname" required>
+    
+        <!-- <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required> -->
+    
+        <button type="submit">Login</button>
+        <!-- <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label> -->
+      </form>
+    </section>
 
-      <section class="user" data-route='user'></section>
+      <section class="user" data-route='user'>
+        
+        <div class="userInfo"></div>
+        
+        <div class="books"></div>
+      </section>
+      <section class="detail" data-route='detail'>
+        <div class="relatedBooks"></div>
+      </section>
 
       
     </main>
