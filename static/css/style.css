@@ -162,3 +162,15 @@ ul{
 img:hover{
   scale: 1.1;
 }
+
+.loader{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader img{
+  width: 10%;
+  box-shadow: unset;
+}

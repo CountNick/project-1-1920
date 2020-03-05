@@ -11,7 +11,7 @@ export const API = {
       Authorization: `Bearer ${secret}`
     };
 
-    const response = await fetch(url);
+    const response = await fetch(url, config);
     const jsonData = await response.json();
 
     return jsonData;

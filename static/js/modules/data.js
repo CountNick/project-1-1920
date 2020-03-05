@@ -48,19 +48,18 @@ export const Data = {
     document.querySelector("form").addEventListener("submit", function(event) {
       event.preventDefault();
 
-      const loginCode = document.querySelectorAll("input[type=number]")[0]
-        .value;
+      const loginCode = document.querySelectorAll("input[type=number]")[0].value;
 
       let user = data[loginCode];
 
       if (user != undefined) {
         Render.removeElements(loginSection);
-
+        Render.loading()
         Data.getUserBooks(user);
       }
 
       if (user === undefined) {
-        renderUserNotFound(loginCode);
+        Render.userNotFound(loginCode);
       }
     });
   },
@@ -74,7 +73,7 @@ export const Data = {
     const resolvedBookData = await Promise.all(dataStore);
 
     console.log("normie: ", resolvedBookData);
-
+    
     Render.user(data, resolvedBookData);
 
     return resolvedBookData;

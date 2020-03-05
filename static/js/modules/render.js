@@ -6,6 +6,10 @@ export const Render = {
     console.log("ull", userData);
     Render.updateUI("user");
 
+    const loader =  document.querySelector('.loader')
+
+    Render.removeElements(loader)
+
     const userSection = document.querySelector(".user");
     const bookSection = document.querySelector(".books");
     const userInfoSection = document.querySelector(".userInfo");
@@ -167,5 +171,20 @@ export const Render = {
       div.insertAdjacentHTML("beforeend", image);
       section.appendChild(div);
     });
+  },
+  userNotFound: (input) => {
+    const main = document.querySelector('main')
+    Render.removeElements(main)
+    const html = `
+    <article>
+      <h2>No users found with the following criteria: ${input}</h2>
+    </article>
+  `;
+    main.insertAdjacentHTML("beforeend", html);
+  },
+  loading: () => {
+      const main = document.querySelector('main')
+
+      main.insertAdjacentHTML('afterbegin', '<div class="loader"><h1>Loading</h1><img src="/static/img/load.gif"></div>')
   }
 };
