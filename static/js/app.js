@@ -2,10 +2,17 @@ import { API } from './modules/api.js'
 import { Data } from './modules/data.js'
 import { Router } from './modules/router.js'
 
-
-Router.handle()
-/*** Fetching data -> refactor into module later ***/
 const main = document.querySelector("main");
+
+const App = {
+  init: (() => {
+    Router.handle()
+  })()
+}
+
+
+/*** Fetching data -> refactor into module later ***/
+
 
 // API.getUserData()
 //   .then(data => Data.filterUsers(data))
@@ -84,7 +91,6 @@ function render(userData, data) {
   const userSection = document.querySelector(".user");
   const bookSection = document.querySelector(".books");
   const userInfoSection = document.querySelector(".userInfo");
-  const readerBehaviour = document.createElement('div')
 
   userSection.id = userData[0].lener
 
@@ -127,6 +133,7 @@ userInfoSection.insertAdjacentHTML("beforebegin", `<h1>Welkom ${userData[0].lene
 
 
   bookSection.insertAdjacentHTML('beforebegin', '<h3>Uw leenhistorie: </h3>')
+  
   bookData.forEach((item, i) => {
     if(item.genres != undefined){
     favoriteGenre.push(item.genres)}
@@ -169,9 +176,6 @@ async function renderBookDetail(data, num){
   console.log('num: ', num)
   const result = data.find(book => book.isbn === num);
 
-  // const recommended = API.getBookData(result.genre[0])
-  
-
   const html = `
   <article>
     <h2>${result.titles[0]}</h2>
@@ -192,12 +196,9 @@ async function renderBookDetail(data, num){
     <li>Aantal pagina's: ${result.description[0]}</li>
     <li>Uitgever: ${result.publisher[0]}</li>
 
-
     </ul>
     </div>
     <h2 class="other">Andere ${result.genres[0]} boeken</h2>
-
-      
   </article>`;
 
   detailSection.insertAdjacentHTML("afterbegin",html)

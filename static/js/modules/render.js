@@ -16,17 +16,18 @@ export const Render = {
         const info =  `
         
         <article>
-          Uw geboortejaar:
-          <p>${userData[0].geboorteJaar}</p>
-          <p>Ingeschreven op: ${userData[0].inschrijfDat}</p>
-          <p>Postcode: ${userData[0].postcode}</p>
-          <h3>Uw leenhistorie: </h3>
-      
+        <h3>Uw persoonlijke informatie: </h3>
+        Uw geboortejaar:
+        <p><input type ="text" value="${userData[0].geboorteJaar}"> <button>Verander</button></p>
+        <p>U bent lid sinds: <p>${userData[0].inschrijfDat}</p></p>
+        Postcode:
+        <p> <input type ="text" value="${userData[0].postcode}"><button>Verander</button></p>
         </article>
       `;
       
       
       userInfoSection.insertAdjacentHTML("afterbegin", info);
+      userInfoSection.insertAdjacentHTML("beforebegin", `<h1>Welkom ${userData[0].lener}</h1>`);
       
         const bookData = data.map(book => {
           
@@ -45,25 +46,41 @@ export const Render = {
         console.log('renderuser: ', bookData)
         // Router.handle(bookData)
         Data.storeBooks(bookData)
+
+        const pages = []
+        const favoriteGenre = []
+      
+      
+        bookSection.insertAdjacentHTML('beforebegin', '<h3>Uw leenhistorie: </h3>')
         
       
-        // const results = bookData.results;
-        // console.dir(results);
         bookData.forEach((item, i) => {
-          const html = `
-                  <a class="book" href = #book/:${item.isbn}>
-                  <article>
-                    <img src="${
-                      item.coverimages ? item.coverimages[1] : "Geen samenvatting"
-                    }">
-                  </article>
-                  </a>
-                `;
-          bookSection.insertAdjacentHTML("afterbegin", html);
-          // userSection.insertAdjacentHTML("afterbegin", html);
+            if(item.genres != undefined){
+                favoriteGenre.push(item.genres)}
+                pages.push(+item.description[0].substring(0,3))
+                const html = `
+                        <a class="book" href = #book/:${item.isbn}>
+                        <article>
+                          <img src="${
+                            item.coverimages ? item.coverimages[1] : "Geen samenvatting"
+                          }">
+                        </article>
+                        </a>
+                      `;
+                bookSection.insertAdjacentHTML("afterbegin", html);
         });
+
+        const totalPagesRead = pages.reduce((a, b) => a + b, 0)
+        // userInfoSection.insertAdjacentHTML('beforeend', readerBehaviour)
+      
+        userInfoSection.insertAdjacentHTML("beforeend", 
+        `<article class="behave">
+        <h3>Uw leesgedrag: </h3>
+        <p>Totaal aantal gelezen pagina's: <p>${totalPagesRead}</p>
+        <p>Uw favoriete genre: </p>
+        <p>Aantal gelezen boeken: ${bookData.length}</p>
+        </article>`)
         
-        // return bookData
     },
     removeElements: (section) => {
         section.querySelectorAll("*").forEach(user => user.remove());
@@ -96,28 +113,35 @@ export const Render = {
       
         const html = `
         <article>
-          <h2>${result.titles[0]}</h2>
-          
-          <div class="scene scene--card">
-          <div class="card">
-          <div class="card__face card__face--front">
-          <img src="${
-            result.coverimages ? result.coverimages[1] : "Geen samenvatting"
-          }">
-          </div>
-          <div class="card__face card__face--back"><p>${result.summaries ? result.summaries[0] : "Geen samenvatting"}</p></div>
-          </div>
-          </div>
-          <h2>Andere ${result.genres[0]} boeken</h2>
-        </article>`;
+        <h2>${result.titles[0]}</h2>
+        
+        <div class="scene scene--card">
+        <div class="card">
+        <div class="card__face card__face--front">
+        <img src="${
+          result.coverimages ? result.coverimages[1] : "Geen samenvatting"
+        }">
+        </div>
+        <div class="card__face card__face--back"><p>${result.summaries ? result.summaries[0] : "Geen samenvatting"}</p></div>
+        </div>
+        <ul>
+    
+        <h4>Details: </h4>
+        <li>Auteur: ${result.authors[0]}</li>
+        <li>Aantal pagina's: ${result.description[0]}</li>
+        <li>Uitgever: ${result.publisher[0]}</li>
+    
+    
+        </ul>
+        </div>
+        <h2 class="other">Andere ${result.genres[0]} boeken</h2>
+      </article>`;
       
         detailSection.insertAdjacentHTML("afterbegin",html)
         // detailSection.insertAdjacentElement("beforeend", relatedBooks)
       
         const recommendedBooks = await API.getBookData(result.genres[0])
       
-        // console.log(recommendedBooks.results)
-          
         Render.relatedBooks(recommendedBooks, detailSection)
       
         let card = document.querySelector('.card');

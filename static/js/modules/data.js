@@ -92,10 +92,5 @@ export const Data = {
 
         localStorage.setItem('storeBooks', JSON.stringify(data))
 
-        // const saved = localStorage.getItem('test')
-
-        // console.log('ls: ', saved)
-
-        // return saved
     }
 }
