@@ -1,4 +1,32 @@
-# Project 1 @cmda-minor-web · 2019-2020
+# OBA privacy and ownership case
+*__You decide which data you share__*
+
+## Concept
+
+The concept is a user profile where people can change or remove the information they share with OBA, check their reading behaviour, check rented books and get reading recomendations according to genre.
+
+### Login 
+![37ef58776d0d1f76bed727f79ee0d195](https://user-images.githubusercontent.com/47485018/75990211-d7932f80-5ef4-11ea-8942-f34f5a6a0fba.gif)
+
+### User profile
+![accda1b833f01d448ee8298ee2adc752](https://user-images.githubusercontent.com/47485018/75990543-58eac200-5ef5-11ea-8650-da6a54f6c249.gif)
+
+## Data
+
+When the user enters a subscriber number the profile page gets rendered and a fetch request gets send with each isbn number of the books rented by the user. 
+
+## Wishlist
+
+* Data visualisations
+    * Reading behaviour
+    * How many males / females are interested in your favorite genre
+    * How many people from your postal code are interested in the same genre 
+
+* Detail page for each recommended books
+
+* Make data changeble
+
+* Render appropriate color schemes in profile according to age of user
 
 ## Initial ideas
 

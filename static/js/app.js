@@ -1,32 +1,39 @@
 import { API } from './modules/api.js'
 import { Data } from './modules/data.js'
+import { Router } from './modules/router.js'
+
+
+Router.handle()
 /*** Fetching data -> refactor into module later ***/
 const main = document.querySelector("main");
 
-API.getUserData()
-  .then(data => Data.filterUsers(data))
-  .then(filterUsers => Data.groupBy(filterUsers))
-  .then(groupBy => login(groupBy))
+// API.getUserData()
+//   .then(data => Data.filterUsers(data))
+//   .then(filterUsers => Data.groupBy(filterUsers))
+//   .then(groupBy => login(groupBy))
   // .then(login => renderUser(login));
 
 function login(data){
   let loginSection = document.querySelector('.loginSection')
-  console.log('login: ', data)
-
+  console.log('login: ', data)      
+  // let form = document.querySelector('form')
+  // console.log(form)
   document.querySelector("form").addEventListener("submit", function(event){
 
+    
     event.preventDefault()
 
     const loginCode = document.querySelectorAll("input[type=number]")[0].value;
+    const passCode = document.querySelectorAll("input[type=password]")[0].value
+    console.log(passCode)
 
     let user = data[loginCode]
 
-    
     if(user != undefined){
     
       removeUser(loginSection)
       
-      renderUser(user)
+      getUserBooks(user)
     }
 
     if(user === undefined){
@@ -41,7 +48,7 @@ function removeUser(section){
 }
 
 
-async function renderUser(data) {
+async function getUserBooks(data) {
 
   console.log('render: ', data)
   
@@ -77,20 +84,26 @@ function render(userData, data) {
   const userSection = document.querySelector(".user");
   const bookSection = document.querySelector(".books");
   const userInfoSection = document.querySelector(".userInfo");
+  const readerBehaviour = document.createElement('div')
+
+  userSection.id = userData[0].lener
 
   const info =  `
   
   <article>
+    
+    <h3>Uw persoonlijke informatie: </h3>
     Uw geboortejaar:
-    <p>${userData[0].geboorteJaar}</p>
-    <p>Ingeschreven op: ${userData[0].inschrijfDat}</p>
-    <p>Postcode: ${userData[0].postcode}</p>
-
+    <p><input type ="text" value="${userData[0].geboorteJaar}"> <button>Verander</button></p>
+    <p>U bent lid sinds: <p>${userData[0].inschrijfDat}</p></p>
+    Postcode:
+    <p> <input type ="text" value="${userData[0].postcode}"><button>Verander</button></p>
   </article>
 `;
 
 
 userInfoSection.insertAdjacentHTML("afterbegin", info);
+userInfoSection.insertAdjacentHTML("beforebegin", `<h1>Welkom ${userData[0].lener}</h1>`);
 
   const bookData = data.map(book => {
     
@@ -109,10 +122,15 @@ userInfoSection.insertAdjacentHTML("afterbegin", info);
   console.log(bookData)
   router(userData, bookData)
   
+  const pages = []
+  const favoriteGenre = []
 
-  // const results = bookData.results;
-  // console.dir(results);
+
+  bookSection.insertAdjacentHTML('beforebegin', '<h3>Uw leenhistorie: </h3>')
   bookData.forEach((item, i) => {
+    if(item.genres != undefined){
+    favoriteGenre.push(item.genres)}
+    pages.push(+item.description[0].substring(0,3))
     const html = `
             <a class="book" href = #book/:${item.isbn}>
             <article>
@@ -125,8 +143,18 @@ userInfoSection.insertAdjacentHTML("afterbegin", info);
     bookSection.insertAdjacentHTML("afterbegin", html);
     // userSection.insertAdjacentHTML("afterbegin", html);
   });
+  // console.log(favoriteGenre.reduce((a, b) => counted[a] > counted[b] ? a : b))
+  const totalPagesRead = pages.reduce((a, b) => a + b, 0)
+  // userInfoSection.insertAdjacentHTML('beforeend', readerBehaviour)
 
-
+  userInfoSection.insertAdjacentHTML("beforeend", 
+  `<article class="behave">
+  <h3>Uw leesgedrag: </h3>
+  <p>Totaal aantal gelezen pagina's: <p>${totalPagesRead}</p>
+  <p>Uw favoriete genre: </p>
+  <p>Aantal gelezen boeken: ${bookData.length}</p>
+  </article>`)
+  // userInfoSection.appendChild(readerBehaviour)
 
 }
 
@@ -142,9 +170,6 @@ async function renderBookDetail(data, num){
   const result = data.find(book => book.isbn === num);
 
   // const recommended = API.getBookData(result.genre[0])
-
-    
-
   
 
   const html = `
@@ -160,10 +185,17 @@ async function renderBookDetail(data, num){
     </div>
     <div class="card__face card__face--back"><p>${result.summaries ? result.summaries[0] : "Geen samenvatting"}</p></div>
     </div>
-    </div>
-    <h2>Andere ${result.genres[0]} boeken</h2>
+    <ul>
 
-    
+    <h4>Details: </h4>
+    <li>Auteur: ${result.authors[0]}</li>
+    <li>Aantal pagina's: ${result.description[0]}</li>
+    <li>Uitgever: ${result.publisher[0]}</li>
+
+
+    </ul>
+    </div>
+    <h2 class="other">Andere ${result.genres[0]} boeken</h2>
 
       
   </article>`;
@@ -172,8 +204,6 @@ async function renderBookDetail(data, num){
   // detailSection.insertAdjacentElement("beforeend", relatedBooks)
 
   const recommendedBooks = await API.getBookData(result.genres[0])
-
-
 
   // console.log(recommendedBooks.results)
     
@@ -196,8 +226,7 @@ function RenderRelatedBooks(array, section){
   removeUser(div)
 
   array.results.forEach(element => {
-    const image = `<img src="${element.coverimages ? element.coverimages[1] : "Geen samenvatting"}">`
-    console.log(image)
+    const image = `<a href = "#book/${element.isbn}"><img src="${element.coverimages ? element.coverimages[1] : "Geen samenvatting"}"></a>`
     div.insertAdjacentHTML('beforeend', image)
     section.appendChild(div)
   });

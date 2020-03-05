@@ -27,7 +27,7 @@ form {
 
 }
 
-form input{
+form input, input{
   padding: 1rem;
   size: 1rem;
   background-color: #f6f6f6;
@@ -128,4 +128,37 @@ img{
 .card__face--back {
   background: #f6f6f6;
   transform: rotateY(180deg);
+}
+
+.userInfo{
+  display: flex;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+}
+.userInfo article{
+  width: 100%;
+  align-items: stretch;
+  flex-shrink: 0;
+  padding-left: 1rem;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  margin-left: 1%;
+}
+
+form label{
+  margin-bottom: 1rem;
+}
+
+.other{
+  margin-top: 15rem;
+}
+
+ul{
+  all: unset;
+  list-style-type: none;
+}
+
+img:hover{
+  scale: 1.1;
 }
