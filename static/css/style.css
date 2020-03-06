@@ -140,8 +140,8 @@ img{
   align-items: stretch;
   flex-shrink: 0;
   padding-left: 1rem;
-  background: black;
-  color: white;
+  background: whitesmoke;
+  color: black;
   border-radius: 10px;
   margin-left: 1%;
 }
