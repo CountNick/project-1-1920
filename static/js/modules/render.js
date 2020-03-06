@@ -24,8 +24,12 @@ export const Render = {
         <p><input type ="text" value="${userData[0].geboorteJaar}"> <button class="change">Verander</button></p>
         <p>U bent lid sinds: <p>${userData[0].inschrijfDat}</p></p>
         <p> <input type ="text" value="${userData[0].woonplaats}"><button class= "change">Verander</button></p>
+        Uw geslacht:
+        <p> <input type ="text" value="${userData[0].geslacht}"><button class= "change">Verander</button></p>
         Postcode:
         <p> <input type ="text" value="${userData[0].postcode}"><button class= "change">Verander</button></p>
+        
+        
         </article>
       `;
 
@@ -64,9 +68,10 @@ export const Render = {
         favoriteGenre.push(item.genres);
       }
       pages.push(+item.description[0].substring(0, 3));
-      const html = `
+      const html = `    <div>
+                        <button class = "erase"> X </button>
                         <a class="book" href = #book/:${item.isbn}>
-                        <article>
+                        <article class="historyRent">
                           <img src="${
                             item.coverimages
                               ? item.coverimages[1]
@@ -74,12 +79,23 @@ export const Render = {
                           }">
                         </article>
                         </a>
+                        </div>
                       `;
       bookSection.insertAdjacentHTML("afterbegin", html);
+
+      const eraseButton = document.querySelector('.erase')
+
+      console.log(eraseButton)
+
+      eraseButton.addEventListener('click', function(event){
+        const btn = event.target
+        Render.removeElements(btn.nextSibling.nextElementSibling)
+        btn.parentNode.removeChild(btn)
+      })
+
     });
 
     const totalPagesRead = pages.reduce((a, b) => a + b, 0);
-    // userInfoSection.insertAdjacentHTML('beforeend', readerBehaviour)
 
     userInfoSection.insertAdjacentHTML(
       "beforeend",
@@ -88,7 +104,7 @@ export const Render = {
         <p>Totaal aantal gelezen pagina's: ${totalPagesRead}</p>
         <p>Uw favoriete genre: ${bookData[0].genres[0]}</p>
         <p>Aantal gelezen boeken: ${bookData.length}</p>
-        <p>U leende uw laatste boek op: ${userData[3].leenDatum}: </p>
+        <p>U leende uw laatste boek op ${userData[3].leenDatum}: </p>
         <p>${bookData[3].titles[0]} van ${bookData[0].authors[0]}</p>
         </article>`
     );
@@ -100,11 +116,11 @@ export const Render = {
     // got this piece of code from joost's example at https://github.com/cmda-minor-web/web-app-from-scratch-1920/blob/master/examples/routing-fetching-templating/static/js/app.js#L24
     const sections = document.querySelectorAll("main section");
     sections.forEach(section => {
-      section.classList.remove("active");
+      section.classList.remove("active")
     });
     const activeSection = document.querySelector(`[data-route=${route}]`);
     console.log(activeSection);
-    activeSection.classList.add("active");
+    activeSection.classList.add("active")
   },
   bookDetail: async (data, num) => {
     console.log("bookdetail param: ", data);
@@ -112,10 +128,10 @@ export const Render = {
     // const relatedSection = document.querySelector('.relatedBooks')
     Render.removeElements(detailSection);
 
-    Render.updateUI("detail");
+    Render.updateUI("detail")
 
     num = +num.substring(1);
-    console.log("num: ", num);
+    console.log("num: ", num)
     const result = data.find(book => book.isbn === num);
 
     const html = `
@@ -153,26 +169,25 @@ export const Render = {
 
     Render.relatedBooks(recommendedBooks, detailSection);
 
-    let card = document.querySelector(".card");
+    let card = document.querySelector(".card")
     card.addEventListener("click", function() {
       card.classList.toggle("is-flipped");
       // console.log('klikkert')
     });
 
-    console.log("card", card);
+    console.log("card", card)
   },
   relatedBooks: (data, section) => {
-    const div = document.createElement("div");
-    // const relatedSection = document.createElement('div')
+    const div = document.createElement("div")
 
-    Render.removeElements(div);
+    Render.removeElements(div)
 
     data.results.forEach(element => {
       const image = `<a href = "#book/${element.isbn}"><img src="${
         element.coverimages ? element.coverimages[1] : "Geen samenvatting"
       }"></a>`;
       div.insertAdjacentHTML("beforeend", image);
-      section.appendChild(div);
+      section.appendChild(div)
     });
   },
   userNotFound: (input) => {

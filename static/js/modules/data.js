@@ -21,7 +21,8 @@ export const Data = {
           inschrijfDat: book["inschr. datum"],
           leenDatum: book.transdat,
           geboorteJaar: book.geboortejaar,
-          postcode: book.postcode
+          postcode: book.postcode,
+          geslacht: book.geslacht
         };
       })
       .filter(book => !isNaN(book.ISBN));

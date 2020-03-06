@@ -176,4 +176,34 @@ ul{
   background-color: #e93f33;
 }
 
-.userInfo > article:nth-of-type(1) p{}
+.userInfo, .detail{
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.user > h3{
+  padding-left: 2%;
+}
+
+h1{
+  padding-left: 2%;
+}
+
+.erase{
+  all: unset;
+  text-align: center;
+  border-radius: 50%;
+  background-color: red;
+  color: #ffffff;
+  height: 3rem;
+  width: 3rem;
+  position: relative;
+}
+
+.historyRent > img{
+  margin-top: -3rem;
+}
+
+.userInfo article > p >input{
+  border-radius: unset;
+}
