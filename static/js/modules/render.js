@@ -21,11 +21,17 @@ export const Render = {
         <article>
         <h3>Uw persoonlijke informatie: </h3>
         Uw geboortejaar:
-        <p><input type ="text" value="${userData[0].geboorteJaar}"> <button class="change">Verander</button></p>
-        <p>U bent lid sinds: <p>${userData[0].inschrijfDat}</p></p>
+        
+        <p>
+        <input type ="text" value="${userData[0].geboorteJaar}">
+        <button class="change">Verander</button>
+        </p>
+        
+        <p>U bent lid sinds: <p>${userData[0].inschrijfDat}</p>
+        U komt uit:
         <p> <input type ="text" value="${userData[0].woonplaats}"><button class= "change">Verander</button></p>
         Uw geslacht:
-        <p> <input type ="text" value="${userData[0].geslacht}"><button class= "change">Verander</button></p>
+        <p> <input type ="text" value="${userData[0].geslacht}"><button class= "change">Verander</button> </p>
         Postcode:
         <p> <input type ="text" value="${userData[0].postcode}"><button class= "change">Verander</button></p>
         
@@ -105,7 +111,11 @@ export const Render = {
         <p>Uw favoriete genre: ${bookData[0].genres[0]}</p>
         <p>Aantal gelezen boeken: ${bookData.length}</p>
         <p>U leende uw laatste boek op ${userData[3].leenDatum}: </p>
-        <p>${bookData[3].titles[0]} van ${bookData[0].authors[0]}</p>
+        <p><b>${bookData[3].titles[0]} van ${bookData[0].authors[0]}: </b></p>
+        <div class= "lastBorrow">
+        <img src= "${bookData[3].coverimages[1]}">
+        <p>${bookData[3].summaries[0]}</p>
+        </div>
         </article>`
     );
   },

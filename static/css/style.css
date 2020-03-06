@@ -173,7 +173,9 @@ ul{
 }
 
 .change{
-  background-color: #e93f33;
+  background-color: black;
+  border-style: solid;
+  border-color: white;
 }
 
 .userInfo, .detail{
@@ -206,4 +208,13 @@ h1{
 
 .userInfo article > p >input{
   border-radius: unset;
+}
+
+.lastBorrow{
+  all: unset;
+  display: flex;
+}
+
+.lastBorrow img{
+  width: 50%;
 }
