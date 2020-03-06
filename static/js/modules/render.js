@@ -185,6 +185,6 @@ export const Render = {
   loading: () => {
       const main = document.querySelector('main')
 
-      main.insertAdjacentHTML('afterbegin', '<div class="loader"><h1>Loading</h1><img src="/static/img/load.gif"></div>')
+      main.insertAdjacentHTML('afterbegin', '<div class="loader"><h1>Loading</h1><img src="./static/img/load.gif"></div>')
   }
 };
