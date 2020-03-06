@@ -8,11 +8,11 @@
 
 ## Table of contents
 
-* ### [Concept](https://github.com/CountNick/project-1-1920#concept)
-* ### [Data](https://github.com/CountNick/project-1-1920#data)
-* ### [Wishlist](https://github.com/CountNick/project-1-1920#wishlist)
+* ### [Concept](https://github.com/CountNick/project-1-1920#concept-1)
+* ### [Data](https://github.com/CountNick/project-1-1920#data-1)
+* ### [Wishlist](https://github.com/CountNick/project-1-1920#wishlist-1)
 * ### [Initial Ideas](https://github.com/CountNick/project-1-1920#wishlist)
-* ### [Installation]()
+* ### [Installation](https://github.com/CountNick/project-1-1920#installation-1)
 
 ## Concept
 
