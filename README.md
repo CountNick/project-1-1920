@@ -1,7 +1,7 @@
 # Oba data editor
 *__You decide which data you share__*
 
-[Checkout the live version](https://countnick.github.io/project-1-1920/), login with number: 1, 2 or 3 as username and password
+[Checkout the live version](https://countnick.github.io/project-1-1920/), __login with number: 1, 2 or 3 as username and password__
 
 ![Screenshot](https://user-images.githubusercontent.com/47485018/76060182-fb9c5280-5f80-11ea-876e-eb21efe6dbd5.png)
 
@@ -34,11 +34,21 @@ Oba data editor is a user profile where people can change or remove the informat
 
 ## Data
 
-When the user enters a subscriber number the profile page gets rendered and a fetch request gets send with each isbn number of the books rented by the user. 
+### __Data__
+
+* Oba excell datasheet with user data(not published), the file in this project is a [mockup](https://github.com/CountNick/project-1-1920/blob/master/fakeSet.json)
+
+* The valid ISBN numbers get filtered out of the excel dataset and a fetch request to the OBA api gets send with these numbers
+
+### How the data flow works: 
+
+When the user enters his or her subscriber number the profile page gets rendered and a fetch request gets send with each isbn number of the books rented by the user. When the user clicks on one of the previously rented books a detailpage of said book gets rendered and a new fetch to the API is done with the genre of the book that has been clicked.
 
 For the live version i made a mock up of the data. If you want to try it out you can login with number: 1, 2 or 3. The number has to be typed in the username and password input.
 
 ## Wishlist
+
+Things i wanted to do but didn't have any time for
 
 * Data visualisations
     * Reading behaviour
@@ -61,3 +71,16 @@ Search engine for kids' books based on user input:
 
 ## Installation 
 
+Installation
+
+__*Note in order to run this project locally you need some kind of local server to start it up. I used the liveServer extension in VS Code*__
+
+Open up terminal, and type:
+
+```
+git clone https://github.com/CountNick/project-1-1920.git
+```
+```
+cd project-1-1920
+```
+Open up the folder in VS code and start live server. The app will now be running on localhost:5500
