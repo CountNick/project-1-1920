@@ -25,25 +25,41 @@ export const Render = {
         <p>
         <input type ="text" value="${userData[0].geboorteJaar}">
         <button class="change">Verander</button>
+        <button class="eraseInfo">X</button>
         </p>
         
         <p>U bent lid sinds: <p>${userData[0].inschrijfDat}</p>
         U komt uit:
         <p> <input type ="text" value="${userData[0].woonplaats}"><button class= "change">Verander</button></p>
         Uw geslacht:
-        <p> <input type ="text" value="${userData[0].geslacht}"><button class= "change">Verander</button> </p>
+        <p> <input type ="text" value="${userData[0].geslacht}"><button class= "change">Verander</button> <button class="eraseInfo">X</button> </p>
         Postcode:
         <p> <input type ="text" value="${userData[0].postcode}"><button class= "change">Verander</button></p>
         
-        
         </article>
       `;
+
+
 
     userInfoSection.insertAdjacentHTML("afterbegin", info);
     userInfoSection.insertAdjacentHTML(
       "beforebegin",
       `<h1>Welkom ${userData[0].lener}</h1>`
     );
+
+    const eraseInfoButtons = document.querySelectorAll('.eraseInfo')
+
+    eraseInfoButtons.forEach(btn => {
+      
+      btn.addEventListener('click', function(event){
+        let info = event.target
+        console.log('olaa', info.parentNode)
+        // Render.removeElements(btn.nextSibling.nextElementSibling)
+        Render.removeElements(info.parentNode)
+      })
+
+    })
+
 
     const bookData = data
       .map(book => {

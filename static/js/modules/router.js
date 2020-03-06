@@ -12,13 +12,8 @@ export const Router = {
       "": () => {
         Data.login(userData);
       },
-      "user/:lener": lener => {
-        console.log("user");
-      },
       "book/:isbn": isbn => {
-        // const data = await Data.storeBooks()
         const data = JSON.parse(localStorage.getItem("storeBooks"));
-        console.log(data);
         Render.bookDetail(data, isbn);
       }
     });
