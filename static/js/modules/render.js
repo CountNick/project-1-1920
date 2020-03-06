@@ -21,10 +21,11 @@ export const Render = {
         <article>
         <h3>Uw persoonlijke informatie: </h3>
         Uw geboortejaar:
-        <p><input type ="text" value="${userData[0].geboorteJaar}"> <button>Verander</button></p>
+        <p><input type ="text" value="${userData[0].geboorteJaar}"> <button class="change">Verander</button></p>
         <p>U bent lid sinds: <p>${userData[0].inschrijfDat}</p></p>
+        <p> <input type ="text" value="${userData[0].woonplaats}"><button class= "change">Verander</button></p>
         Postcode:
-        <p> <input type ="text" value="${userData[0].postcode}"><button>Verander</button></p>
+        <p> <input type ="text" value="${userData[0].postcode}"><button class= "change">Verander</button></p>
         </article>
       `;
 
@@ -84,9 +85,11 @@ export const Render = {
       "beforeend",
       `<article class="behave">
         <h3>Uw leesgedrag: </h3>
-        <p>Totaal aantal gelezen pagina's: <p>${totalPagesRead}</p>
-        <p>Uw favoriete genre: </p>
+        <p>Totaal aantal gelezen pagina's: ${totalPagesRead}</p>
+        <p>Uw favoriete genre: ${bookData[0].genres[0]}</p>
         <p>Aantal gelezen boeken: ${bookData.length}</p>
+        <p>U leende uw laatste boek op: ${userData[3].leenDatum}: </p>
+        <p>${bookData[3].titles[0]} van ${bookData[0].authors[0]}</p>
         </article>`
     );
   },

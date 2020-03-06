@@ -159,9 +159,6 @@ ul{
   list-style-type: none;
 }
 
-img:hover{
-  scale: 1.1;
-}
 
 .loader{
   margin-top: 2rem;
@@ -174,3 +171,9 @@ img:hover{
   width: 10%;
   box-shadow: unset;
 }
+
+.change{
+  background-color: #e93f33;
+}
+
+.userInfo > article:nth-of-type(1) p{}
